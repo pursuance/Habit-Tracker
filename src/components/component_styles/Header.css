@@ -1,0 +1,35 @@
+.header {
+  margin-top: 50px;
+  font-family: Inter;
+  width: 545px;
+  height: 55px;
+  background-color: #7a8de42f;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: solid 0.25px rgba(255, 255, 255, 0.085);
+  padding-left: 10px;
+  display: flex;  
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1 {
+  padding: 0;
+  margin: 0;
+  align-self: flex-end;
+}
+
+.date-buttons-container{
+  margin-right: 27.75px;
+  display: flex;
+  gap: 10px;
+}
+
+.change-date-button {
+  background-color: #61DAFB;
+  border: none;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 35px;
+  cursor: pointer;
+}
