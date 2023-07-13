@@ -13,7 +13,6 @@ function removeElement(array, element) {
 export default function App() {
 
   function lastNDays(numberOfDays, startDate) {
-    console.log(startDate)
     return [...Array(numberOfDays)].map((_,index) => {
       const dateObj = new Date()
       dateObj.setDate(startDate.getDate() - index)
@@ -23,22 +22,32 @@ export default function App() {
 
   const [numberOfDays, setNumberOfDays] = React.useState({days: 7, startDate: new Date()})
 
-  const [datesDisplayed, setDatesDisplayed] = React.useState(
-    lastNDays(numberOfDays.days, numberOfDays.startDate).map((date,index) => 
+  const [datesDisplayed, setDatesDisplayed] = React.useState()
+
+  React.useEffect(() =>
+    setDatesDisplayed(lastNDays(numberOfDays.days, numberOfDays.startDate).map((date,index) => 
     <div key={index} className="date-container">
       <span className="day-of-the-week">{date.split(',')[0]}</span>
       <span className="date-text">{date.split(',')[1].split(' ')[2]}</span>
     </div>
   ))
+  , [numberOfDays])
 
   function changeStartDate(addOrSubtract) {
     if (addOrSubtract === "subtract") {
       setNumberOfDays(prevState => 
-        console.log(prevState.startDate.setDate(prevState.startDate.getDate()))
         ({
           ...prevState,
-          startDate: prevState.startDate.setDate(prevState.startDate.getDate() - 1)
+          startDate: sub(prevState.startDate, {days: 1})
         })
+      )
+    }
+    if (addOrSubtract === "add") {
+      setNumberOfDays(prevState =>
+        ({
+          ...prevState,
+          startDate: add(prevState.startDate, {days: 1})
+        })  
       )
     }
   }
