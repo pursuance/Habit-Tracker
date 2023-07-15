@@ -21,6 +21,7 @@ body {
   border-bottom-right-radius: 20px;
   background-color: #333b47;
   min-height: 500px;
+  position: relative;
 }
 
 .habit-grid {
@@ -29,7 +30,7 @@ body {
   row-gap: 10px;
 }
 
-.modal-button-container {
+.form-button-container {
   height: 38px;
   width: 70px;
 }
@@ -40,7 +41,7 @@ body {
   align-items: center;
 }
 
-.open-add-habit-modal {
+.open-add-habit-form {
   background-color: #61DAFB;
   border: none;
   border-radius: 5px;

@@ -52,13 +52,6 @@ export default function App() {
     }
   }
 
-  // const dateElements = datesDisplayed.map((date,index) => 
-  //   <div key={index} className="date-container">
-  //     <span className="day-of-the-week">{date.split(',')[0]}</span>
-  //     <span className="date-text">{date.split(',')[1].split(' ')[2]}</span>
-  //   </div>
-  // )
-
   const [habits, setHabits] = React.useState(
     JSON.parse(localStorage.getItem("habits")) || 
   [])
@@ -77,7 +70,7 @@ export default function App() {
         toggleHabitSquare={toggleHabitSquare}
       />
     ))
-  },[habits])
+  },[habits, datesDisplayed])
 
   function toggleHabitForm() {
     setShowHabitForm(prevState => !prevState)
@@ -117,21 +110,20 @@ export default function App() {
     <>
       <Header add={() => changeStartDate("add")} subtract={() => changeStartDate("subtract")}/>
       <div className="app-container">
-        
-        <div className="habit-grid" style={habitGridStyle}>
-          <div className="modal-button-container">
-            <button className="open-add-habit-modal" onClick={toggleHabitForm}>Add a Habbit</button>
+          {showHabitForm && 
+            <HabitForm 
+            toggle={toggleHabitForm}
+            addHabit={addHabit}
+            />
+          }
+          <div className="habit-grid" style={habitGridStyle}>
+            <div className="form-button-container">
+              <button className="open-add-habit-form" onClick={toggleHabitForm}>Add a Habbit</button>
+            </div>
+            {datesDisplayed}
+            {habitRows}
           </div>
-          {datesDisplayed}
-          {habitRows}
         </div>
-        {showHabitForm && 
-          <HabitForm 
-          toggle={toggleHabitForm}
-          addHabit={addHabit}
-          />
-        }
-      </div>
     </>
   )
 }

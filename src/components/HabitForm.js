@@ -19,7 +19,6 @@ export default function HabitForm(props) {
 
   return (
     <div className="habit-form">
-      <div className="overlay">
         <div className="habit-form-content">
           <form onSubmit={handleSubmit}>
             <input placeholder="Habit name" 
@@ -31,7 +30,6 @@ export default function HabitForm(props) {
             <button className="close-button" onClick={props.toggle}>Cancel</button>
           </form>
         </div>
-      </div>
     </div>
   )
 
