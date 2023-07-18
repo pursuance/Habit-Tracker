@@ -3,7 +3,7 @@ import './style.css';
 import Header from './components/Header'
 import HabitForm from './components/HabitForm'
 import HabitRow from './components/HabitRow'
-import { format, add, sub } from 'date-fns'
+import { add, sub } from 'date-fns'
 
 function removeElement(array, element) {
   const index = array.indexOf(element)
@@ -43,12 +43,13 @@ export default function App() {
       )
     }
     if (addOrSubtract === "add") {
-      setNumberOfDays(prevState =>
-        ({
-          ...prevState,
-          startDate: add(prevState.startDate, {days: 1})
-        })  
-      )
+      if (numberOfDays.startDate < sub(new Date(), {days: 1}))
+        setNumberOfDays(prevState =>
+          ({
+            ...prevState,
+            startDate: add(prevState.startDate, {days: 1})
+          })  
+        )
     }
   }
 
@@ -108,7 +109,11 @@ export default function App() {
 
   return (
     <>
-      <Header add={() => changeStartDate("add")} subtract={() => changeStartDate("subtract")}/>
+      <Header 
+        add={() => changeStartDate("add")} 
+        subtract={() => changeStartDate("subtract")}
+        startDate={numberOfDays.startDate}
+      />
       <div className="app-container">
           {showHabitForm && 
             <HabitForm 
